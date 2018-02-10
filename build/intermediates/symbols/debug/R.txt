@@ -721,11 +721,11 @@ int id default_activity_button 0x7f070031
 int id disableHome 0x7f070032
 int id edit_query 0x7f070033
 int id end 0x7f070034
-int id end_padder 0x7f070035
-int id expand_activities_button 0x7f070036
-int id expanded_menu 0x7f070037
-int id forever 0x7f070038
-int id getbutton 0x7f070039
+int id endGame 0x7f070035
+int id end_padder 0x7f070036
+int id expand_activities_button 0x7f070037
+int id expanded_menu 0x7f070038
+int id forever 0x7f070039
 int id guideline2 0x7f07003a
 int id home 0x7f07003b
 int id homeAsUp 0x7f07003c

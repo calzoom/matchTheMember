@@ -7,19 +7,19 @@
     format="10"
     ir-eligibility="COMPATIBLE"
     plugin-version="3.0.1"
-    timestamp="1518246196815"
+    timestamp="1518247582372"
     token="5267786562388327692"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="71" />
+        duration="82" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="16" />
+        duration="13" />
     <task
         name="verifier"
         duration="1" />
@@ -71,8 +71,29 @@
     </build>
     <build
         build-mode="COLD"
+        ir-eligibility="CLASS_ADDED"
+        timestamp="1518246588182"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="/Users/japjot/AndroidStudioProjects/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/japjot/AndroidStudioProjects/app/build/intermediates/split-apk/debug/slices/slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/japjot/AndroidStudioProjects/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/japjot/AndroidStudioProjects/app/build/intermediates/split-apk/debug/slices/slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/japjot/AndroidStudioProjects/app/build/outputs/apk/debug/app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1518246196815"
+        timestamp="1518247582372"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/japjot/AndroidStudioProjects/app/build/intermediates/split-apk/debug/slices/slice_4.apk"

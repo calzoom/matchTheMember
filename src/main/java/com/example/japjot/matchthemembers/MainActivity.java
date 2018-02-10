@@ -1,9 +1,12 @@
 package com.example.japjot.matchthemembers;
 
 import android.content.ContentProviderOperation;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.CountDownTimer;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,8 +32,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     int score = 0;
 
+    AlertDialog alert11;
+
     ImageView imageView;
-//    Button button;
+
+    Button button;
+
     Button button1;
     Button button2;
     Button button3;
@@ -47,17 +54,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
+        builder1.setMessage("Are you sure you want to quit?");
+        builder1.setCancelable(false);
+
+        builder1.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent i = new Intent(MainActivity.this, StartActivity.class);
+                        startActivity(i);
+                    }
+                });
+
+        builder1.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        alert11 = builder1.create();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         imageView = (ImageView) findViewById(R.id.imageView);
 
         r = new Random();
-//        button = (Button) findViewById(R.id.getbutton);
+
+        button = (Button) findViewById(R.id.endGame);
+
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
         button4 = (Button) findViewById(R.id.button4);
+
+        button.setOnClickListener(this);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
@@ -144,7 +178,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        updateCounDownText(startTime);
 //    }
 
-
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.button1 || v.getId() == R.id.button2 || v.getId() == R.id.button3 || v.getId() == R.id.button4){
@@ -162,7 +195,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
             intent.putExtra(ContactsContract.Intents.Insert.NAME, correctMember);
             startActivity(intent);
+        }
 
+        else if(v.getId() == R.id.endGame) {
+            alert11.show();
         }
 
         setUp();
