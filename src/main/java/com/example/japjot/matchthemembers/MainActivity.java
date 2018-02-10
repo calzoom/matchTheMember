@@ -23,13 +23,6 @@ import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-//    private static final long startTime = 5000;
-//
-//    private TextView mTextViewCountdown;
-//
-//    private CountDownTimer mCountDownTimer;
-
-
     int score = 0;
 
     AlertDialog alert11;
@@ -49,10 +42,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     String[] members = {"Daniel Andrews", "Nikhar Arora", "Tiger Chen", "Xin Yi Chen", "Julie Deng", "Radhika Dhomse", "Kaden Dippe", "Angela Dong", "Zach Govani", "Shubham Gupta", "Suyash Gupta", "Joey Hejna", "Cody Hsieh", "Stephen Jayakar", "Aneesh Jindal", "Mohit Katyal", "Mudabbir Khan", "Akkshay Khoslaa", "Justin Kim", "Eric Kong", "Abhinav Koppu", "Srujay Korlakunta", "Ayush Kumar", "Shiv Kushwah", "Leon Kwak", "Sahil Lamba", "Young Lin", "William Lu", "Louie McConnell", "Max Miranda", "Will Oakley", "Noah Pepper", "Samanvi Rai", "Krishnan Rajiyah", "Vidya Ravikumar", "Shreya Reddy", "Amy Shen", "Wilbur Shi", "Sumukh Shivakumar", "Fang Shuo", "Japjot Singh", "Victor Sun", "Sarah Tang", "Kanyes Thaker", "Aayush Tyagi", "Levi Walsh", "Carol Wang", "Sharie Wang", "Ethan Wong", "Natasha Wong", "Aditya Yadav", "Candice Ye", "Vineeth Yeevani", "Jeffrey Zhang"};
 
-
+    CountDownTimer countDownTimer;
+    boolean timerOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        countDownTimer = new CountDownTimer(5100, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                timerOn = true;
+                ((TextView) findViewById(R.id.secondsLeft)).setText(String.valueOf(millisUntilFinished/1000));
+            }
+
+            @Override
+            public void onFinish() {
+                timerOn = false;
+                setUp();
+            }
+        };
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(MainActivity.this);
         builder1.setMessage("Are you sure you want to quit?");
@@ -119,14 +127,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void setUp(){
+    private void setUp() {
         HashSet<String> set = new HashSet<>();
 
         int correctMemberImage = r.nextInt(members.length);
         correctMember = members[correctMemberImage];
         set.add(correctMember);
 
-        while(set.size() < 4) {
+        while (set.size() < 4) {
             int incorrectMember1Image = r.nextInt(members.length);
             String incorrectMember1 = members[incorrectMember1Image];
             set.add(incorrectMember1);
@@ -134,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         List<String> memberButtons = new ArrayList<>();
 
-        for(String s: set) {
+        for (String s : set) {
             memberButtons.add(s);
         }
 
@@ -151,32 +159,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         imageView.setImageResource(correctMemberImagez.getImage());
 
         ((TextView) findViewById(R.id.textViewScoreNumber)).setText(String.valueOf(score));
-//        resetTimer();
-//
-//        startTimer();
-    }
 
-//    private void startTimer(){
-//        mCountDownTimer = new CountDownTimer(startTime, 1000) {
-//            @Override
-//            public void onTick(long millisUntilFinished) {
-//                updateCounDownText(millisUntilFinished);
-//            }
-//
-//            @Override
-//            public void onFinish() {
-//
-//            }
-//        }.start();
-//    }
-//
-//    private void updateCounDownText(long m){
-//        mTextViewCountdown.setText(String.valueOf(m/1000));
-//    }
-//
-//    private void resetTimer(){
-//        updateCounDownText(startTime);
-//    }
+        if(timerOn){
+            countDownTimer.cancel();
+        }
+
+        countDownTimer.start();
+    }
 
     @Override
     public void onClick(View v) {
