@@ -23,6 +23,8 @@ import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+    //finished
+
     int score = 0;
 
     AlertDialog alert11;
