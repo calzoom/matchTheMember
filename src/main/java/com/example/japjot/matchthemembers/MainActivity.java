@@ -1,5 +1,6 @@
 package com.example.japjot.matchthemembers;
 
+import android.content.ContentProviderOperation;
 import android.content.Intent;
 import android.os.CountDownTimer;
 import android.provider.ContactsContract;
@@ -157,8 +158,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         else if(v.getId() == R.id.imageView){
-            Intent intent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
-            startActivityForResult(intent, 1);
+            Intent intent = new Intent(ContactsContract.Intents.Insert.ACTION);
+            intent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
+            intent.putExtra(ContactsContract.Intents.Insert.NAME, correctMember);
+            startActivity(intent);
+
         }
 
         setUp();
